@@ -50,6 +50,11 @@ And execute newInstance.sh to bootstrap the ec2 instance with chef-solo (see nex
 - As the ubuntu user: execute the newInstance.sh , provide all the needed arguments to the script.
   Several Argument Values shall be taken from the cloudformation's stack output (see below for more details)
 
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+Comment: To successfuly run the script, the 111 line of newInstance.sh should be changed as
+ID=`grep INSTANCES /tmp/Newinstance | awk 'BEGIN {FS=" "};{ print $7 }'`
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
 Usage:
 
 usage:  ./newInstance.sh -a AMI-ID -s securityGroupID -k KeyPairName -i InstanceSize -n VPCsubnetID -m IAM-Instance-Profile(Arn=value) -c ChefRole
@@ -61,6 +66,7 @@ Example:
 Start an EC2 Instance and have chef deploy it as an apache webserver:
 
  ./newInstance.sh -a ami-423c0a5f -s sg-xxxxxxxx -k xxxxxxxx -i m3.medium -n subnet-xxxxxxxx -m Arn=arn:aws:iam::xxxxxxxxxxxxxxxx:instance-profile/s3-chef-solo -c web
+ 
  
  1. *securityGroupID*: The bootstrapped instance Security Group Id, See the cloudformation output for the value : ChefSoloInstanceSecurityGroupID
  2. *KeyPairName*: Your keypair name, the public part will be pushed to the instance
