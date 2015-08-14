@@ -53,6 +53,7 @@ And execute newInstance.sh to bootstrap the ec2 instance with chef-solo (see nex
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
 Comment: To successfuly run the script, the 111 line of newInstance.sh should be changed as
+
 ID=`grep INSTANCES /tmp/Newinstance | awk 'BEGIN {FS=" "};{ print $7 }'`
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
